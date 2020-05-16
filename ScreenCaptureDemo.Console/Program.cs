@@ -46,6 +46,10 @@ namespace ScreenCaptureDemo.ConsoleDemo
             //var a = Convert.ToInt32(pixel[3]); 
 
             Console.WriteLine($"R:{r} G:{g} B:{b}");
+
+            //Callback should never be recursed on the same thread or it will never release 
+            //the current frame preventing capture of any new frames
+            //This probably causes minor performance drop but I can't be bothered to make a good example right now
             Task.Factory.StartNew(Next);
         }
     }
